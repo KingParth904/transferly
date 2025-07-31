@@ -1,59 +1,43 @@
+"use client";
 
-import Link from "next/link";
-import { ArrowRight, Zap, ShieldCheck, Smartphone } from 'lucide-react';
+import { useState } from "react";
+import { Button } from "@/app/components/Button"; // Make sure the path is correct
+import { Input } from "./components/Input";
+import { Lock } from "lucide-react";
 
-export default function LandingPage() {
+
+export default function LoadingTest() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleFakeApiCall = () => {
+    // 1. Set loading to true immediately when the function starts
+    setIsLoading(true);
+    console.log("Loading started...");
+
+    // 2. Simulate a network request that takes 3 seconds
+    setTimeout(() => {
+      // 3. After 3 seconds, the "API call" is complete
+      setIsLoading(false);
+      console.log("Loading finished!");
+    }, 3000); // 3000 milliseconds = 3 seconds
+  };
+
   return (
-    <div className="container mx-auto px-4 py-16 sm:py-24 text-center">
-      {/* Hero Section */}
-      <section className="animate-fade-in-up">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">
-          The Future of Payments is{" "}
-          <span className="bg-gradient-to-r from-teal-400 to-blue-500 text-transparent bg-clip-text">
-            Instant.
-          </span>
-        </h1>
-        <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-400">
-          Join Transferly for seamless, secure, and real-time transactions.
-          Send and receive money with the speed of a thought.
-        </p>
-        <div className="mt-10 flex justify-center items-center gap-4">
-          <Link 
-            href="/signup" 
-            className="group inline-flex items-center justify-center rounded-full bg-teal-500 px-6 py-3 text-lg font-semibold text-white transition-all duration-200 ease-in-out hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-          >
-            Get Started
-            <ArrowRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        </div>
-      </section>
+    <div className="p-10">
+      <h1 className="text-2xl mb-4">Button Loading Test</h1>
+      
+      <Button
+        variant="primary"
+        text="Click to Load"
+        onClick={handleFakeApiCall}
+        loading={isLoading} // Pass the loading state to the button
+      />
 
-      {/* Features Section */}
-      <section className="mt-24 sm:mt-32 animate-fade-in-up animation-delay-300">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="p-8 bg-gray-800/50 rounded-xl border border-gray-700">
-            <Zap className="h-10 w-10 mx-auto text-teal-400" />
-            <h3 className="mt-4 text-xl font-semibold">Lightning Fast</h3>
-            <p className="mt-2 text-gray-400">
-              Transactions are processed in real-time. No more waiting.
-            </p>
-          </div>
-          <div className="p-8 bg-gray-800/50 rounded-xl border border-gray-700">
-            <ShieldCheck className="h-10 w-10 mx-auto text-teal-400" />
-            <h3 className="mt-4 text-xl font-semibold">Bank-Grade Security</h3>
-            <p className="mt-2 text-gray-400">
-              Your data and funds are protected with end-to-end encryption.
-            </p>
-          </div>
-          <div className="p-8 bg-gray-800/50 rounded-xl border border-gray-700">
-            <Smartphone className="h-10 w-10 mx-auto text-teal-400" />
-            <h3 className="mt-4 text-xl font-semibold">Mobile Friendly</h3>
-            <p className="mt-2 text-gray-400">
-              A beautiful experience on any device, anywhere you go.
-            </p>
-          </div>
-        </div>
-      </section>
+      <p className="mt-4">
+        Current loading state: {isLoading ? "Loading..." : "Idle"}
+      </p>
+      <Input label="Password" type="password" placeholder="Enter Your Password "
+      startIcon={<Lock size={18}/>}/>
     </div>
   );
 }

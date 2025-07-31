@@ -22,7 +22,6 @@ export default function RootLayout({
       <body className={`${inter.className} bg-gray-900 text-gray-100`}>
         <AuthProvider>
           <div className="relative min-h-screen">
-            {/* Optional: Add a subtle background pattern or gradient */}
             <div className="absolute inset-0 -z-10 h-full w-full bg-gray-900 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px]"></div>
             
             <main>{children}</main>
