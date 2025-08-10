@@ -8,6 +8,7 @@ interface ButtonProps {
   type?: "submit" | "reset" | "button";
   disabled?: boolean;
   startIcon?: ReactElement;
+  className? : string
 }
 
 const baseStyle = 
@@ -28,6 +29,7 @@ export function Button({
   type = "button",
   disabled,
   startIcon,
+  className
 }: ButtonProps) {
   
   const isDisabled = disabled || loading;
@@ -36,6 +38,7 @@ export function Button({
     ${baseStyle} 
     ${variantStyles[variant]}
     ${isDisabled ? disabledStyle : ""}
+    ${className || ""}
   `;
 
   return (

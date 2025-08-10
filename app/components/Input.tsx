@@ -10,7 +10,6 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   startIcon?: ReactElement;
 }
 
-// Renamed to Input for convention
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, type = "text", error, startIcon, className, ...props }, ref) => {
     const id = useId(); 
@@ -66,12 +65,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           <input
             id={id}
-            type={inputType} // Use the dynamic type
+            type={inputType} 
             className={combinedStyle.trim()}
             ref={ref}
             {...props}
           />
-          {/* NEW: Render the end icon */}
+         
           {endIcon && (
              <div className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
               {endIcon}
